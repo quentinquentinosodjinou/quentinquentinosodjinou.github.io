@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="50%" stop-color="#3f2d1a"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="steam" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#fdba74" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#fb923c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#fb923c" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softBlur"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="400" cy="400" r="380" fill="url(#glow)"/>
+
+  <!-- subtle code-like grid -->
+  <g stroke="#fed7aa" stroke-opacity="0.06">
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="220" x2="800" y2="220"/>
+    <line x1="0" y1="320" x2="800" y2="320"/>
+    <line x1="0" y1="420" x2="800" y2="420"/>
+    <line x1="0" y1="520" x2="800" y2="520"/>
+    <line x1="0" y1="620" x2="800" y2="620"/>
+    <line x1="0" y1="720" x2="800" y2="720"/>
+  </g>
+
+  <!-- floating braces / tags -->
+  <text x="120" y="180" font-family="Consolas, monospace" font-size="60" fill="#fb923c" opacity="0.5">{ }</text>
+  <text x="600" y="700" font-family="Consolas, monospace" font-size="55" fill="#fdba74" opacity="0.45">&lt;/&gt;</text>
+  <circle cx="680" cy="180" r="6" fill="#fb923c" opacity="0.8"/>
+  <circle cx="140" cy="640" r="8" fill="#f97316" opacity="0.7"/>
+  <circle cx="720" cy="420" r="5" fill="#fdba74" opacity="0.7"/>
+
+  <!-- steam wisps -->
+  <path d="M 320 260 Q 300 220 320 190 Q 340 160 320 130" stroke="url(#steam)" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 400 260 Q 380 210 400 175 Q 420 140 400 105" stroke="url(#steam)" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M 480 260 Q 460 220 480 190 Q 500 160 480 130" stroke="url(#steam)" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- coffee cup body -->
+  <path d="M 260 300 L 300 520 Q 305 545 335 545 L 465 545 Q 495 545 500 520 L 540 300 Z"
+        fill="url(#cup)" stroke="#c2410c" stroke-width="4"/>
+  <!-- cup shading -->
+  <path d="M 260 300 L 280 410 L 300 520 Q 305 545 335 545 L 400 545 L 400 300 Z"
+        fill="#fb923c" opacity="0.35"/>
+
+  <!-- cup rim -->
+  <ellipse cx="400" cy="300" rx="140" ry="24" fill="#fdba74"/>
+  <ellipse cx="400" cy="300" rx="140" ry="24" fill="none" stroke="#c2410c" stroke-width="4"/>
+  <ellipse cx="400" cy="298" rx="115" ry="16" fill="#7c2d12"/>
+
+  <!-- handle -->
+  <path d="M 540 340 Q 620 340 620 400 Q 620 460 540 460"
+        fill="none" stroke="url(#cup)" stroke-width="22" stroke-linecap="round"/>
+  <path d="M 540 340 Q 620 340 620 400 Q 620 460 540 460"
+        fill="none" stroke="#c2410c" stroke-width="26" stroke-linecap="round" opacity="0.25" filter="url(#softBlur)"/>
+
+  <!-- saucer -->
+  <ellipse cx="400" cy="560" rx="210" ry="26" fill="#44210f" opacity="0.6"/>
+  <ellipse cx="400" cy="552" rx="190" ry="20" fill="#78350f"/>
+
+  <!-- Java logo dot accents on cup -->
+  <circle cx="350" cy="420" r="6" fill="#fed7aa" opacity="0.6"/>
+  <circle cx="450" cy="440" r="5" fill="#fed7aa" opacity="0.5"/>
+  <circle cx="400" cy="470" r="6" fill="#fed7aa" opacity="0.55"/>
+
+  <!-- Title -->
+  <text x="400" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="#fff7ed" text-anchor="middle" letter-spacing="2">
+    PROGRAMMATION JAVA
+  </text>
+  <text x="400" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#fed7aa" text-anchor="middle" letter-spacing="4" opacity="0.85">
+    POO • CLASSES • ALGORITHMES
+  </text>
+</svg>
