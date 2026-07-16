@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Quentin Sodjinou</title>
+    <meta name="description" content="Contactez Quentin Sodjinou pour un projet, une collaboration ou une question.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="st.css">
+</head>
+
+<body>
+
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<div class="background">
+    <span class="blob blob1"></span>
+    <span class="blob blob2"></span>
+    <span class="blob blob3"></span>
+    <div class="grid"></div>
+</div>
+
+<header>
+    <nav class="navbar" aria-label="Navigation principale">
+        <a href="index.html" class="logo">Quentin<span>Dev</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#accueil">Accueil</a></li>
+            <li><a href="index.html#apropos">À propos</a></li>
+            <li><a href="index.html#competences">Compétences</a></li>
+            <li><a href="index.html#formation">Formation</a></li>
+            <li><a href="index.html#projets">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="menu-btn" type="button" aria-label="Ouvrir le menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<main>
+    <section id="contact" style="padding-top: clamp(120px, 18vw, 170px);">
+        <div class="title">
+            <h2>Contact</h2>
+            <p>Travaillons ensemble. Écris-moi un message et je reviens vers toi rapidement.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>quentinquentinosodjinou@gmail.com</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Téléphone</h3>
+                    <p>+229 01 63 20 33 67</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Adresse</h3>
+                    <p>Abomey-Calavi, Bénin</p>
+                </div>
+
+                <div class="socials contact-socials">
+                    <a href="https://wa.me/2290163203367" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://facebook.com/Sodjinou.Quentin" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-panel">
+                <div class="contact-panel__intro">
+                    <h3>Envoyer un message</h3>
+                    <p>Remplis le formulaire ci-dessous pour discuter d’un projet, une question ou une collaboration.</p>
+                </div>
+
+                <form action="https://formsubmit.co/quentinquentinosodjinou@gmail.com"
+                      method="POST"
+                      class="review-form contact-form">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="remerciement.html">
+                    <input type="hidden" name="_subject" value="Nouveau message depuis le portfolio">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <input type="text" name="name" placeholder="Votre nom" required>
+                    <input type="email" name="email" placeholder="Votre email" required>
+
+                    <select name="note" required>
+                        <option value="">Choisissez une note</option>
+                        <option>⭐⭐⭐⭐⭐ Excellent</option>
+                        <option>⭐⭐⭐⭐ Très bien</option>
+                        <option>⭐⭐⭐ Bien</option>
+                        <option>⭐⭐ Moyen</option>
+                        <option>⭐ À améliorer</option>
+                    </select>
+
+                    <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <h2>Quentin Sodjinou</h2>
+        <p>Étudiant en Mathématiques & Informatique</p>
+        <div class="footer-socials">
+            <a href="https://wa.me/2290163203367">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://facebook.com/Sodjinou.Quentin">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <hr>
+        <p>© 2026 Quentin Sodjinou - Tous droits réservés.</p>
+    </div>
+</footer>
+
+<button id="scrollTop">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="sc.js"></script>
+</body>
+</html>
