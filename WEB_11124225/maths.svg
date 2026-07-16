@@ -1,0 +1,106 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softBlur"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="400" cy="400" r="380" fill="url(#glow)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#c7d2fe" stroke-opacity="0.08" stroke-width="1">
+    <g id="vlines"></g>
+  </g>
+  <g stroke="#c7d2fe" stroke-opacity="0.07">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="0" y1="600" x2="800" y2="600"/>
+    <line x1="0" y1="700" x2="800" y2="700"/>
+    <line x1="100" y1="0" x2="100" y2="800"/>
+    <line x1="200" y1="0" x2="200" y2="800"/>
+    <line x1="300" y1="0" x2="300" y2="800"/>
+    <line x1="400" y1="0" x2="400" y2="800"/>
+    <line x1="500" y1="0" x2="500" y2="800"/>
+    <line x1="600" y1="0" x2="600" y2="800"/>
+    <line x1="700" y1="0" x2="700" y2="800"/>
+  </g>
+
+  <!-- floating geometric shapes -->
+  <circle cx="140" cy="150" r="55" fill="none" stroke="url(#accent2)" stroke-width="3" opacity="0.7"/>
+  <polygon points="650,120 700,210 600,210" fill="none" stroke="url(#accent1)" stroke-width="3" opacity="0.7"/>
+  <rect x="600" y="600" width="90" height="90" rx="14" fill="none" stroke="url(#accent2)" stroke-width="3" opacity="0.6" transform="rotate(15 645 645)"/>
+  <circle cx="700" cy="450" r="8" fill="#c084fc" opacity="0.8"/>
+  <circle cx="120" cy="620" r="6" fill="#38bdf8" opacity="0.8"/>
+  <circle cx="230" cy="700" r="10" fill="#818cf8" opacity="0.6"/>
+
+  <!-- Matrix bracket left -->
+  <path d="M 190 260 Q 150 260 150 300 L 150 500 Q 150 540 190 540"
+        fill="none" stroke="url(#accent1)" stroke-width="6" stroke-linecap="round" filter="url(#softBlur)" opacity="0.25"/>
+  <path d="M 190 260 Q 150 260 150 300 L 150 500 Q 150 540 190 540"
+        fill="none" stroke="url(#accent1)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Matrix bracket right -->
+  <path d="M 610 260 Q 650 260 650 300 L 650 500 Q 650 540 610 540"
+        fill="none" stroke="url(#accent2)" stroke-width="6" stroke-linecap="round" filter="url(#softBlur)" opacity="0.25"/>
+  <path d="M 610 260 Q 650 260 650 300 L 650 500 Q 650 540 610 540"
+        fill="none" stroke="url(#accent2)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Matrix numbers grid -->
+  <g font-family="Georgia, serif" font-size="46" fill="#e0e7ff" text-anchor="middle" font-style="italic">
+    <text x="255" y="330">a</text>
+    <text x="345" y="330">b</text>
+    <text x="435" y="330">c</text>
+    <text x="255" y="410">d</text>
+    <text x="345" y="410">e</text>
+    <text x="435" y="410">f</text>
+    <text x="255" y="490">g</text>
+    <text x="345" y="490">h</text>
+    <text x="435" y="490">i</text>
+  </g>
+
+  <!-- Sigma symbol -->
+  <text x="530" y="200" font-family="Georgia, serif" font-size="90" fill="url(#accent1)" opacity="0.85">&#8721;</text>
+
+  <!-- Integral symbol -->
+  <text x="620" y="640" font-family="Georgia, serif" font-size="90" fill="url(#accent2)" opacity="0.85">&#8747;</text>
+
+  <!-- Pi symbol -->
+  <text x="105" y="740" font-family="Georgia, serif" font-size="70" fill="#c084fc" opacity="0.7">&#960;</text>
+
+  <!-- Determinant lines around matrix -->
+  <line x1="150" y1="260" x2="150" y2="540" stroke="none"/>
+
+  <!-- decorative axis / graph -->
+  <g stroke="#a5b4fc" stroke-width="2" opacity="0.4">
+    <line x1="330" y1="600" x2="470" y2="600"/>
+    <line x1="330" y1="600" x2="330" y2="560"/>
+  </g>
+  <path d="M 330 600 Q 370 540 400 600 T 470 580" stroke="url(#accent2)" stroke-width="3" fill="none" opacity="0.75"/>
+
+  <!-- Title-like label -->
+  <text x="400" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="#f1f5f9" text-anchor="middle" letter-spacing="2">
+    ALGÈBRE LINÉAIRE
+  </text>
+  <text x="400" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#c7d2fe" text-anchor="middle" letter-spacing="4" opacity="0.8">
+    MATRICES • SYSTÈMES • DÉTERMINANTS
+  </text>
+</svg>
