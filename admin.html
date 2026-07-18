@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages de visiteurs - Admin</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0f1117;
+            --panel: #171a23;
+            --panel-light: #1f2330;
+            --border: #2a2f3d;
+            --text: #eaeaf0;
+            --muted: #9aa0ae;
+            --accent: #6c5ce7;
+            --accent2: #00d1b2;
+            --danger: #ff5c5c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ---------- LOGIN ---------- */
+        #loginScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .login-box i.fa-lock {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .login-box h1 {
+            font-size: 1.3rem;
+            margin: 0 0 6px;
+        }
+
+        .login-box p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin: 0 0 24px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--panel-light);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .login-box button:hover { opacity: 0.9; }
+        .login-box button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        #loginError {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            min-height: 18px;
+        }
+
+        /* ---------- DASHBOARD ---------- */
+        #dashboard { display: none; }
+
+        header.admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 10;
+        }
+
+        header.admin-header h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header.admin-header h1 i { color: var(--accent); }
+
+        #logoutBtn {
+            background: var(--panel-light);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 9px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #logoutBtn:hover { border-color: var(--danger); color: var(--danger); }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .stat-card .num {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .stat-card .label {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        #messagesList { display: flex; flex-direction: column; gap: 14px; }
+
+        .msg-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 20px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .msg-card.unread {
+            border-color: var(--accent);
+        }
+
+        .msg-card.unread::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent2);
+        }
+
+        .msg-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .msg-name { font-weight: 600; font-size: 1.02rem; }
+        .msg-email { color: var(--accent2); font-size: 0.85rem; }
+        .msg-date { color: var(--muted); font-size: 0.78rem; white-space: nowrap; }
+
+        .msg-note { font-size: 0.85rem; margin: 4px 0 10px; }
+
+        .msg-body {
+            color: #d3d5dd;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin-bottom: 14px;
+        }
+
+        .msg-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .msg-actions button {
+            font-family: inherit;
+            font-size: 0.8rem;
+            padding: 7px 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--panel-light);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .msg-actions button:hover { border-color: var(--accent); }
+        .msg-actions .delete-btn:hover { border-color: var(--danger); color: var(--danger); }
+
+        #emptyState, #loadingState {
+            text-align: center;
+            color: var(--muted);
+            padding: 60px 20px;
+        }
+
+        #emptyState i, #loadingState i {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== ÉCRAN DE CONNEXION ===== -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <i class="fa-solid fa-lock"></i>
+            <h1>Espace admin</h1>
+            <p>Connecte-toi pour voir les messages reçus</p>
+
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required autocomplete="username">
+                <input type="password" id="loginPassword" placeholder="Mot de passe" required autocomplete="current-password">
+                <button type="submit" id="loginBtn">Se connecter</button>
+            </form>
+
+            <p id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- ===== TABLEAU DE BORD ===== -->
+    <div id="dashboard">
+
+        <header class="admin-header">
+            <h1><i class="fa-solid fa-envelope-open-text"></i> Messages de visiteurs</h1>
+            <button id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</button>
+        </header>
+
+        <main>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="num" id="statTotal">0</div>
+                    <div class="label">Messages reçus</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num" id="statUnread">0</div>
+                    <div class="label">Non lus</div>
+                </div>
+            </div>
+
+            <div id="loadingState">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Chargement des messages...
+            </div>
+
+            <div id="emptyState" style="display:none;">
+                <i class="fa-regular fa-comment-dots"></i>
+                Aucun message pour le moment.
+            </div>
+
+            <div id="messagesList"></div>
+
+        </main>
+    </div>
+
+    <script type="module">
+        import { app } from "./firebase-config.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import {
+            getFirestore,
+            collection,
+            query,
+            orderBy,
+            onSnapshot,
+            doc,
+            updateDoc,
+            deleteDoc
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const loginScreen = document.getElementById("loginScreen");
+        const dashboard = document.getElementById("dashboard");
+        const loginForm = document.getElementById("loginForm");
+        const loginError = document.getElementById("loginError");
+        const loginBtn = document.getElementById("loginBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        const messagesList = document.getElementById("messagesList");
+        const emptyState = document.getElementById("emptyState");
+        const loadingState = document.getElementById("loadingState");
+        const statTotal = document.getElementById("statTotal");
+        const statUnread = document.getElementById("statUnread");
+
+        let unsubscribeMessages = null;
+
+        // ----- Connexion -----
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            loginError.textContent = "";
+            loginBtn.disabled = true;
+            loginBtn.textContent = "Connexion...";
+
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (err) {
+                console.error(err);
+                loginError.textContent = "Email ou mot de passe incorrect.";
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Se connecter";
+            }
+        });
+
+        // ----- Déconnexion -----
+        logoutBtn.addEventListener("click", () => signOut(auth));
+
+        // ----- État de connexion -----
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginScreen.style.display = "none";
+                dashboard.style.display = "block";
+                loadMessages();
+            } else {
+                loginScreen.style.display = "flex";
+                dashboard.style.display = "none";
+                if (unsubscribeMessages) unsubscribeMessages();
+            }
+        });
+
+        // ----- Chargement en temps réel des messages -----
+        function loadMessages() {
+            loadingState.style.display = "block";
+            emptyState.style.display = "none";
+
+            const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+
+            unsubscribeMessages = onSnapshot(q, (snapshot) => {
+                loadingState.style.display = "none";
+                messagesList.innerHTML = "";
+
+                if (snapshot.empty) {
+                    emptyState.style.display = "block";
+                    statTotal.textContent = "0";
+                    statUnread.textContent = "0";
+                    return;
+                }
+
+                emptyState.style.display = "none";
+
+                let total = 0;
+                let unread = 0;
+
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const id = docSnap.id;
+                    total++;
+                    if (!data.lu) unread++;
+
+                    const dateStr = data.createdAt?.toDate
+                        ? data.createdAt.toDate().toLocaleString("fr-FR", {
+                            day: "2-digit", month: "short", year: "numeric",
+                            hour: "2-digit", minute: "2-digit"
+                        })
+                        : "Date inconnue";
+
+                    const card = document.createElement("div");
+                    card.className = "msg-card" + (data.lu ? "" : " unread");
+                    card.innerHTML = `
+                        <div class="msg-top">
+                            <div>
+                                <div class="msg-name">${escapeHtml(data.name || "Anonyme")}</div>
+                                <div class="msg-email">${escapeHtml(data.email || "")}</div>
+                            </div>
+                            <div class="msg-date">${dateStr}</div>
+                        </div>
+                        ${data.note ? `<div class="msg-note">${escapeHtml(data.note)}</div>` : ""}
+                        <div class="msg-body">${escapeHtml(data.message || "")}</div>
+                        <div class="msg-actions">
+                            ${data.lu
+                                ? `<button class="mark-unread-btn"><i class="fa-regular fa-envelope"></i> Marquer non lu</button>`
+                                : `<button class="mark-read-btn"><i class="fa-regular fa-envelope-open"></i> Marquer lu</button>`
+                            }
+                            <button class="delete-btn"><i class="fa-solid fa-trash"></i> Supprimer</button>
+                        </div>
+                    `;
+
+                    card.querySelector(".delete-btn").addEventListener("click", async () => {
+                        if (confirm("Supprimer ce message définitivement ?")) {
+                            await deleteDoc(doc(db, "messages", id));
+                        }
+                    });
+
+                    const readBtn = card.querySelector(".mark-read-btn");
+                    if (readBtn) {
+                        readBtn.addEventListener("click", async () => {
+                            await updateDoc(doc(db, "messages", id), { lu: true });
+                        });
+                    }
+
+                    const unreadBtn = card.querySelector(".mark-unread-btn");
+                    if (unreadBtn) {
+                        unreadBtn.addEventListener("click", async () => {
+                            await updateDoc(doc(db, "messages", id), { lu: false });
+                        });
+                    }
+
+                    messagesList.appendChild(card);
+                });
+
+                statTotal.textContent = total;
+                statUnread.textContent = unread;
+            }, (err) => {
+                console.error("Erreur de chargement des messages :", err);
+                loadingState.style.display = "none";
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+        }
+    </script>
+
+</body>
+
+</html>
